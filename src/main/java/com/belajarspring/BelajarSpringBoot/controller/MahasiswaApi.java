@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/Api")
+@RestController // untuk menandai bahwa class ini adalah class untuk rest api controller
+@Validated // menandai bahwa class ini untuk mengaksesnya harus menggunakan username password
+@RequestMapping("/Api") // untuk mapping url
 public class MahasiswaApi {
     private MahasiswaService mahasiswaService;
 
