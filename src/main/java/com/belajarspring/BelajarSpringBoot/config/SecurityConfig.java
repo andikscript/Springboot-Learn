@@ -6,9 +6,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Configuration // memberitahu ke framework agar tidak mengenerete password dan menggunakan username password di bawah ini
+// anotasi @Configuration memberitahu ke framework agar tidak mengenerete password dan
+// menggunakan username password di method configure(AuthenticationManagerBuilder auth)
+@Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    // method berikut digunakan untuk membuat username dan password ketika mengakses
+    // web (jika ada login page) atau api
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
@@ -21,6 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("USER","ADMIN");
     }
 
+    // method ini digunakan untuk mapping url yang  diberikan authentication
+    // dan jika tidak diberi method ini maka akses localhost pertama akan terdapat login page
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
